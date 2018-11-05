@@ -1,16 +1,22 @@
 package com.crwal.processor;
 
+import com.crwal.entity.Article;
+import com.crwal.service.ArticleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Selectable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 博客园RSS
  */
+@Component
 public class BokeYuanPageProcessor implements PageProcessor {
 
     // 抓取网站的相关配置，包括编码、抓取间隔、重试次数等
@@ -35,24 +41,38 @@ public class BokeYuanPageProcessor implements PageProcessor {
         return site;
     }
 
+    @Autowired
+    ArticleService articleService;
     public void process(Page page) {
         //System.out.println(page.getHtml());
         List<Selectable> nodes = page.getHtml().xpath("//*entry").nodes();
         System.out.println(nodes.size());
+        List<Article> datas = new ArrayList<>(nodes.size());
         for (Selectable s : nodes) {
             //获取页面需要的内容
             //System.out.println(s.get());
+            Article article = new Article();
             System.out.println(s.xpath("//published/text()") + "  : " + s.xpath("//title[@type=\"text\"]/text()") + " >>>>> " + s.xpath("//id/text()"));
+            article.setTitle(s.xpath("//title[@type=\"text\"]/text()").get());
+            article.setUrl(s.xpath("//id/text()").get());
+            datas.add(article);
             count++;
         }
+        articleService.addMusics(datas);
     }
 
-    public static void main(String[] args) {
+    private final static String URL = "http://feed.cnblogs.com/blog/sitehome/rss";
+    public void start(){
         long startTime, endTime;
         System.out.println("开始爬取...");
         startTime = System.currentTimeMillis();
-        Spider.create(new BokeYuanPageProcessor()).addUrl("http://feed.cnblogs.com/blog/sitehome/rss").thread(2).run();
+        Spider.create(this).addUrl(URL).thread(2).run();
         endTime = System.currentTimeMillis();
         System.out.println("爬取结束，耗时约" + ((endTime - startTime) / 1000) + "秒，抓取了"+count+"条记录");
+    }
+
+
+    public static void main(String[] args) {
+        new BokeYuanPageProcessor().start();
     }
 }

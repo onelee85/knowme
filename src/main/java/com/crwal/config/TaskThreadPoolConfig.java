@@ -1,8 +1,8 @@
 package com.crwal.config;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
@@ -13,7 +13,8 @@ import java.util.concurrent.ThreadPoolExecutor;
  * Date: 2018/11/2 15:12
  */
 @Configuration
-public class AsyncConfig {
+@ConfigurationProperties(prefix = "spring.task.pool")
+public class TaskThreadPoolConfig {
     /*
     此处成员变量应该使用@Value从配置中读取
      */

@@ -33,12 +33,16 @@ public class ToutiaoPageProcessor implements PageProcessor {
         }
     }
 
-    public static void main(String[] args) {
+    public void start(){
         long startTime, endTime;
         System.out.println("开始爬取...");
         startTime = System.currentTimeMillis();
-        Spider.create(new ToutiaoPageProcessor()).addUrl("https://toutiao.io/prev/2018-10-31").thread(2).run();
+        Spider.create(this).addUrl("https://toutiao.io/prev/2018-10-31").thread(2).run();
         endTime = System.currentTimeMillis();
         System.out.println("爬取结束，耗时约" + ((endTime - startTime) / 1000) + "秒，抓取了"+count+"条记录");
+    }
+
+    public static void main(String[] args) {
+        new ToutiaoPageProcessor().start();
     }
 }
