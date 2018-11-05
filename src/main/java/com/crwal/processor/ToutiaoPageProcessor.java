@@ -1,6 +1,7 @@
 package com.crwal.processor;
 
 import com.crwal.entity.Article;
+import com.crwal.entity.SourceEum;
 import com.crwal.service.ArticleService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -56,27 +57,13 @@ public class ToutiaoPageProcessor implements PageProcessor {
             logger.info(s.xpath("//*div[@class=\"content\"]/h3/a/text()") + " >>>>> " + "https://toutiao.io" + s.xpath("//*[@class=\"content\"]/h3/a/@href"));
             Article article = new Article();
             article.setTitle(s.xpath("//*div[@class=\"content\"]/h3/a/text()").get());
-            article.setUrl(s.xpath("//*[@class=\"content\"]/h3/a/@href").get());
+            article.setUrl("https://toutiao.io" + s.xpath("//*[@class=\"content\"]/h3/a/@href").get());
             article.setGmtModified(new Date());
+            article.setSource(SourceEum.kaifazhetoutiao);
             datas.add(article);
             count++;
         }
         articleService.addArticles(datas);
-
-/*        if (page.getUrl().regex(list).match()) {
-            page.addTargetRequests(page.getHtml().xpath("//div[@class='post']").regex(item).all());
-        } else {
-            String title=page.getHtml().xpath("//div[@class='content']/h3/a/text()").toString();
-            String link=page.getHtml().regex(url).toString();
-            logger.info("title:{}", title);
-            if (StringUtils.isNotEmpty(title) && StringUtils.isNotEmpty(link)) {
-                Article article = new Article();
-                article.setTitle(title);
-                article.setUrl(link);
-                article.setGmtModified(new Date());
-                //articleService.addArticle(article);
-            }
-        }*/
     }
 
     public void start(){

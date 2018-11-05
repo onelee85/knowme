@@ -22,7 +22,6 @@ public class Article {
     @Column(name = "title")
     private String title;
 
-
     //内容
     @Column(name = "content")
     private String content;
@@ -39,6 +38,17 @@ public class Article {
 
     @Column(name = "gmt_modified")
     private Date gmtModified;
+
+    public SourceEum getSource() {
+        return source;
+    }
+
+    public void setSource(SourceEum source) {
+        this.source = source;
+    }
+
+    @Column(name = "source")
+    private SourceEum source;
 
     public Long getId() {
         return id;

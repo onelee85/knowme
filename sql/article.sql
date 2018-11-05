@@ -6,6 +6,7 @@ COLLATE 'utf8_general_ci';
 DROP TABLE IF EXISTS crawl.articles;
 CREATE TABLE crawl.articles (
 	id  bigint unsigned not null AUTO_INCREMENT,
+	source varchar(100) , #来源
   url varchar(100) not null, #URL
   title varchar(200) not null, #标题
   content varchar(1000) , #内容

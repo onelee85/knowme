@@ -1,6 +1,7 @@
 package com.crwal.processor;
 
 import com.crwal.entity.Article;
+import com.crwal.entity.SourceEum;
 import com.crwal.service.ArticleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,6 +61,7 @@ public class BokeYuanPageProcessor implements PageProcessor {
             article.setTitle(s.xpath("//title[@type=\"text\"]/text()").get());
             article.setUrl(s.xpath("//id/text()").get());
             article.setGmtModified(new Date());
+            article.setSource(SourceEum.bokeyuan);
             datas.add(article);
             count++;
         }
