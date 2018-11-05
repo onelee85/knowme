@@ -2,6 +2,8 @@ package com.crwal.processor;
 
 import com.crwal.entity.Article;
 import com.crwal.service.ArticleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
@@ -11,6 +13,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Selectable;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +21,7 @@ import java.util.List;
  */
 @Component
 public class BokeYuanPageProcessor implements PageProcessor {
+    private static final Logger logger = LoggerFactory.getLogger(BokeYuanPageProcessor.class);
 
     // 抓取网站的相关配置，包括编码、抓取间隔、重试次数等
     private Site site = Site.me()
@@ -55,20 +59,21 @@ public class BokeYuanPageProcessor implements PageProcessor {
             System.out.println(s.xpath("//published/text()") + "  : " + s.xpath("//title[@type=\"text\"]/text()") + " >>>>> " + s.xpath("//id/text()"));
             article.setTitle(s.xpath("//title[@type=\"text\"]/text()").get());
             article.setUrl(s.xpath("//id/text()").get());
+            article.setGmtModified(new Date());
             datas.add(article);
             count++;
         }
-        articleService.addMusics(datas);
+        articleService.addArticles(datas);
     }
 
     private final static String URL = "http://feed.cnblogs.com/blog/sitehome/rss";
     public void start(){
         long startTime, endTime;
-        System.out.println("开始爬取...");
+        logger.info("开始爬取博客园RSS...");
         startTime = System.currentTimeMillis();
-        Spider.create(this).addUrl(URL).thread(2).run();
+        Spider.create(this).addUrl(URL).thread(2).setExitWhenComplete(Boolean.TRUE).run();
         endTime = System.currentTimeMillis();
-        System.out.println("爬取结束，耗时约" + ((endTime - startTime) / 1000) + "秒，抓取了"+count+"条记录");
+        logger.info("博客园RSS爬取结束，耗时约" + ((endTime - startTime) / 1000) + "秒，抓取了"+count+"条记录");
     }
 
 
