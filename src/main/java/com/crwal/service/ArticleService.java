@@ -6,7 +6,7 @@ import com.crwal.processor.BokeYuanPageProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -43,6 +43,12 @@ public class ArticleService {
         }
 
         //articleDao.saveAll(articles);
+    }
+
+    public Page<Article> findArticles(int page, int size){
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(page,size,sort);
+        return articleDao.findAll(pageable);
     }
 
     public Article getArticleByUrl(String url){

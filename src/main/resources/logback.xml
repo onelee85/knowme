@@ -46,6 +46,7 @@
 <!--
     <logger name="com.crwal" level="debug"/>-->
     <root level="debug">
+        <appender-ref ref="stdout" />
         <appender-ref ref="logfile" />
         <appender-ref ref="errorfile" />
     </root>
