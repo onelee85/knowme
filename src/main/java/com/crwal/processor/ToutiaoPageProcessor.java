@@ -39,7 +39,6 @@ public class ToutiaoPageProcessor implements PageProcessor {
 
     public static final String item = "http://toutiao.io/posts/\\w+";
 
-    public static final String url = "http://toutiao.io/j/\\w+";
 
     public Site getSite() {
         return site;
@@ -53,25 +52,24 @@ public class ToutiaoPageProcessor implements PageProcessor {
        List<Article> datas = new ArrayList<>(nodes.size());
         for (Selectable s : nodes) {
             //获取页面需要的内容
-            //System.out.println(s.get());
             logger.info(s.xpath("//*div[@class=\"content\"]/h3/a/text()") + " >>>>> " + "https://toutiao.io" + s.xpath("//*[@class=\"content\"]/h3/a/@href"));
             Article article = new Article();
             article.setTitle(s.xpath("//*div[@class=\"content\"]/h3/a/text()").get());
             article.setUrl("https://toutiao.io" + s.xpath("//*[@class=\"content\"]/h3/a/@href").get());
-            article.setGmtModified(new Date());
             article.setSource(SourceEum.kaifazhetoutiao);
             datas.add(article);
             count++;
         }
         articleService.addArticles(datas);
     }
+    private final static String URL = "http://toutiao.io/prev/";
 
     public void start(){
         long startTime, endTime;
         logger.info("开始爬取开发者头条...");
         startTime = System.currentTimeMillis();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Spider.create(this).addUrl("http://toutiao.io/prev/" + sdf.format(new Date())).thread(5).run();
+        Spider.create(this).addUrl(URL + sdf.format(new Date())).thread(1).setExitWhenComplete(Boolean.TRUE).run();
         endTime = System.currentTimeMillis();
         logger.info("爬取开发者头条结束，耗时约" + ((endTime - startTime) / 1000) + "秒，抓取了"+count+"条记录");
     }

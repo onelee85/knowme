@@ -4,15 +4,19 @@ COLLATE 'utf8_general_ci';
 
 
 DROP TABLE IF EXISTS crawl.articles;
-CREATE TABLE crawl.articles (
-	id  bigint unsigned not null AUTO_INCREMENT,
-	source varchar(100) , #来源
-  url varchar(100) not null, #URL
-  title varchar(200) not null, #标题
-  content varchar(1000) , #内容
-  gmt_published datetime ,
-  gmt_create timestamp default current_timestamp ,
-	gmt_modified datetime,
-	unique(url),
-  primary key(id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE crawl.articles
+(
+   id             BIGINT UNSIGNED   NOT NULL AUTO_INCREMENT,
+   source         VARCHAR(100),
+   url            VARCHAR(100)      NOT NULL,
+   title          VARCHAR(200)      NOT NULL,
+   content        VARCHAR(1000),
+   gmt_published  DATETIME,
+   gmt_create     TIMESTAMP         DEFAULT CURRENT_TIMESTAMP NOT NULL,
+   gmt_modified   DATETIME,
+   PRIMARY KEY (id)
+)
+ENGINE=InnoDB;
+
+CREATE UNIQUE INDEX url
+   ON crawl.articles (url ASC);

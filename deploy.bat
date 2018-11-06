@@ -17,6 +17,4 @@ exit
 
 :pubApi
 scp build/libs/knowme-0.1.0.jar root@%~1:~/project/
-ssh root@%~1  "source /etc/profile;cd ~/project;mv knowme-0.1.0.jar knowme.jar;./restart.sh"
-
-
+ssh root@%~1  "source /etc/profile;cd ~/project;mv knowme-0.1.0.jar knowme.jar;./run.sh restart"

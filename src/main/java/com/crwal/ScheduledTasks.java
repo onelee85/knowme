@@ -47,7 +47,7 @@ public class ScheduledTasks {
     }
 
     /**
-     * 博客园rss脚本
+     * 开发者头条脚本
      */
     @Async
     @Scheduled(initialDelay = 500, fixedRate = 4*60*60*1000)

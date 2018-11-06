@@ -49,18 +49,14 @@ public class BokeYuanPageProcessor implements PageProcessor {
     @Autowired
     ArticleService articleService;
     public void process(Page page) {
-        //System.out.println(page.getHtml());
         List<Selectable> nodes = page.getHtml().xpath("//*entry").nodes();
-        System.out.println(nodes.size());
         List<Article> datas = new ArrayList<>(nodes.size());
         for (Selectable s : nodes) {
             //获取页面需要的内容
-            //System.out.println(s.get());
             Article article = new Article();
-            System.out.println(s.xpath("//published/text()") + "  : " + s.xpath("//title[@type=\"text\"]/text()") + " >>>>> " + s.xpath("//id/text()"));
+            logger.info(s.xpath("//published/text()") + "  : " + s.xpath("//title[@type=\"text\"]/text()") + " >>>>> " + s.xpath("//id/text()"));
             article.setTitle(s.xpath("//title[@type=\"text\"]/text()").get());
             article.setUrl(s.xpath("//id/text()").get());
-            article.setGmtModified(new Date());
             article.setSource(SourceEum.bokeyuan);
             datas.add(article);
             count++;
