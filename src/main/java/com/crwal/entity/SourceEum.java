@@ -5,5 +5,5 @@ package com.crwal.entity;
  * Date: 2018/11/5 15:56
  */
 public enum  SourceEum {
-    bokeyuan, kaifazhetoutiao
+    bokeyuan, kaifazhetoutiao,CSDN
 }

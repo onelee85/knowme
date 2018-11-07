@@ -1,6 +1,7 @@
 package com.crwal;
 
 import com.crwal.processor.BokeYuanPageProcessor;
+import com.crwal.processor.CsdnPageProcessor;
 import com.crwal.processor.ToutiaoPageProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,9 @@ public class ScheduledTasks {
 
     @Autowired
     ToutiaoPageProcessor toutiaoPageProcessor;
+
+    @Autowired
+    CsdnPageProcessor csdnPageProcessor;
 /*
     @Async
     @Scheduled(cron = "0/5 * * * * *")
@@ -40,7 +44,7 @@ public class ScheduledTasks {
      * 博客园rss脚本
      */
     @Async
-    @Scheduled(initialDelay = 500, fixedRate = 30*60*1000)
+    @Scheduled(initialDelay = 300, fixedRate = 30*60*1000)
     public void bokeYuanJob(){
         logger.info(Thread.currentThread().getName()+"=====>>>>>博客园定时脚本启动 "+System.currentTimeMillis());
         bokeYuanPageProcessor.start();
@@ -50,9 +54,19 @@ public class ScheduledTasks {
      * 开发者头条脚本
      */
     @Async
-    @Scheduled(initialDelay = 500, fixedRate = 4*60*60*1000)
+    @Scheduled(initialDelay = 600, fixedRate = 4*60*60*1000)
     public void toutiaoJob(){
         logger.info(Thread.currentThread().getName()+"=====>>>>>开发者头条定时脚本启动 "+System.currentTimeMillis());
         toutiaoPageProcessor.start();
+    }
+
+    /**
+     * CSDN脚本
+     */
+    @Async
+    @Scheduled(initialDelay = 900, fixedRate = 5*60*1000)
+    public void csdnJob(){
+        logger.info(Thread.currentThread().getName()+"=====>>>>>CSDN脚本 "+System.currentTimeMillis());
+        csdnPageProcessor.start();
     }
 }
