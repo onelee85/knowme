@@ -8,11 +8,60 @@
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" type="text/css" href="https://staticfile.qnssl.com/twitter-bootstrap/3.3.0/css/bootstrap.min.css" />
-    <link href="https://cdn.staticfile.org/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" media="all" href="css/application-8f1ee8c5ae5cdbfb54fc2a3f26f6ac6f.css" />
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" media="all" href="css/application.css" />
     <!--<script src="js/application-63d9cfc2750d0d5687bd2d04f5ce5ce8.js"></script>-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="https://staticfile.qnssl.com/twitter-bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://staticfile.qnssl.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <script type="text/javascript">
+        var zxPage = 1;
+        $(function() {
+            loaddata();
+            function loaddata() {
+                var $article_list = $('#article_list')
+
+                $.ajax({
+                    type: "get",
+                    dataType: "json",
+                    url: 'http://localhost:8000/article/list?size=20' + '&page=' + zxPage,
+                    cache: false,
+                    success: function(json) {
+                        console.log(json.data.length);
+                        if (json.data.length > 0) {
+                            var items = [];
+
+                            $.each(json.data, function(i, shot) {
+                                console.log('id:'+shot.id);
+                                console.log('title:'+shot.title);
+                                console.log('url:'+shot.url);
+                                items.push('<div class="post">');
+                                items.push('<div class="btn-group-vertical upvote">\n' +
+                                '                                    <a id="like-button-'+shot.id +'" class="btn btn-default btn-xs like-button" title="点赞"\n' +
+                                '                                         data-remote="true" rel="nofollow" data-method="post" href="/likes/post/1856863"> <i class="fa fa-thumbs-o-up"></i> <span></span>\n' +
+                                '                                    </a>\n' +
+                                '                                    <a id="favorite-button-'+shot.id+ '" class="btn btn-default btn-xs favorite-button" title="收藏"\n' +
+                                '                                        data-remote="true" rel="nofollow" data-method="post" href="/favorites/post/1856863"> <i class="fa fa-bookmark-o"></i><!-- <span></span> -->\n' +
+                                '                                        </a>\n' +
+                                '                                 </div>');
+                                items.push('<div class="content" data-url="'+shot.url+'">');
+                                items.push('<h3 class="title">');
+                                items.push('<a target="_blank" rel="external" title="'+shot.title+'" href="'+shot.url+'">'+shot.title+'</a>');
+                                items.push('</h3>');
+                                items.push('<div class="meta">'+shot.url+'</div>');
+                                items.push('</div>');
+                                items.push('</div>');
+                            });
+                            var newEls = items.join(''),  tmpcontent = $(newEls);
+                            $article_list.append(tmpcontent);
+                        }
+                    },
+                    error: function() { alert('error'); }
+                });
+                //end ajax
+            }
+        });
+    </script>
 </head>
 <body class="welcome_index">
 <header class="navbar navbar-default navbar-static-top bs-docs-nav" id="top" role="banner">
@@ -36,46 +85,7 @@
     <div class="container" id="daily">
         <div class="daily">
             <h3 class="date"> <i class="fa fa-calendar"></i> <span>今日最新</span> <small>2018-11-07</small> </h3>
-            <div class="posts">
-
-                <div class="post">
-                    <div class="btn-group-vertical upvote">
-                        <a id="like-button-1856863" class="btn btn-default btn-xs like-button" title="点赞"
-                                    data-remote="true" rel="nofollow" data-method="post" href="/likes/post/1856863"> <i class="fa fa-thumbs-o-up"></i> <span>7</span>
-                        </a>
-                        <a id="favorite-button-1856863" class="btn btn-default btn-xs favorite-button" title="收藏"
-                                    data-remote="true" rel="nofollow" data-method="post" href="/favorites/post/1856863"> <i class="fa fa-bookmark-o"></i><!-- <span></span> -->
-                        </a>
-                    </div>
-                    <div class="content" data-url="/posts/osbjax">
-                        <h3 class="title">
-                            <a target="_blank" rel="external" title="滴滴出行基于 RocketMQ 构建企业级消息队列服务的实践 - 开发者头条" href="/k/osbjax">
-                                滴滴出行基于 RocketMQ 构建企业级消息队列服务的实践
-                            </a>
-                        </h3>
-                        <div class="meta"> mp.weixin.qq.com&nbsp;</div>
-                    </div>
-                </div>
-
-                <div class="post">
-                    <div class="btn-group-vertical upvote">
-                        <a id="like-button-1856861" class="btn btn-default btn-xs like-button" title="点赞"
-                           data-remote="true" rel="nofollow" data-method="post" href="/likes/post/1856863"> <i class="fa fa-thumbs-o-up"></i> <span>7</span>
-                        </a>
-                        <a id="favorite-button-1856862" class="btn btn-default btn-xs favorite-button" title="收藏"
-                           data-remote="true" rel="nofollow" data-method="post" href="/favorites/post/1856863"> <i class="fa fa-bookmark-o"></i><!-- <span></span> -->
-                        </a>
-                    </div>
-                    <div class="content" data-url="/posts/osbjax">
-                        <h3 class="title">
-                            <a target="_blank" rel="external" title="滴滴出行基于 RocketMQ 构建企业级消息队列服务的实践 - 开发者头条" href="/k/osbjax">
-                                滴滴出行基于 RocketMQ 构建企业级消息队列服务的实践
-                            </a>
-                        </h3>
-                        <div class="meta"> mp.weixin.qq.com&nbsp;</div>
-                    </div>
-                </div>
-
+            <div class="posts" id="article_list">
             </div>
         </div>
         <a class="hide jscroll-next" href="/prev/2018-11-06">下一页</a>
