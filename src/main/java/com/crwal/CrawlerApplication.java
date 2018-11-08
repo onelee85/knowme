@@ -13,7 +13,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @author: jiao.li
  * Date: 2018/11/2 13:41
  */
-
 @EnableScheduling
 @EnableAsync
 @EnableConfigurationProperties({TaskThreadPoolConfig.class} )

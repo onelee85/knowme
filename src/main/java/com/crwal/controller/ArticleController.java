@@ -27,10 +27,19 @@ public class ArticleController {
     public Map<String, Object> list(@RequestParam("page") int page,@RequestParam("size") int size) {
         Map<String, Object> result = new HashMap<>();
         Page<Article> pages = articleService.findArticles(page, size);
+        result.put("code", 1);
         result.put("data",pages.getContent());
         result.put("pages",pages.getTotalPages());
         result.put("total",pages.getTotalElements());
         result.put("number",pages.getNumber());
+        return result;
+    }
+
+    @RequestMapping("/love")
+    public Map<String, Object> love(@RequestParam("id") int id) {
+        Map<String, Object> result = new HashMap<>();
+        //Page<Article> pages = articleService.findArticles(page, size);
+        result.put("code", 1);
         return result;
     }
 }

@@ -5162,3 +5162,20 @@ header.navbar .nav>li>a.navbar-profile img {
         max-width:124px
     }
 }
+
+#morewrapper
+{
+    text-align: center;
+    padding: 30px;
+    position: relative;
+}
+#morewrapper span
+{
+    font-size: 13px;
+    font-family: 'microsoft yahei' , Arial, sans-serif;
+    color: #fff;
+    border: 1px solid #29afec;
+    padding: 10px 15px;
+    background: #29afec;
+    cursor: pointer;
+}
