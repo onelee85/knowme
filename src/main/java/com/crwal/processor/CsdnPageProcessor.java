@@ -50,6 +50,7 @@ public class CsdnPageProcessor implements PageProcessor {
     ArticleService articleService;
     public void process(Page page) {
         //System.out.println(page.getJson());
+        count =0;
         List<Selectable> nodes = page.getJson().jsonPath("$.articles[*]").nodes();
         List<Article> datas = new ArrayList<>(nodes.size());
         for (Selectable s : nodes) {

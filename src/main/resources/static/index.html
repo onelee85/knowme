@@ -39,6 +39,7 @@
                                 console.log('id:'+shot.id);
                                 console.log('title:'+shot.title);
                                 console.log('url:'+shot.url);
+                                console.log('gmtmodified:'+shot.gmtModified);
                                 items.push('<div class="post">');
                                 items.push('<div class="btn-group-vertical upvote">\n' +
                                 '                                    <a id="like-button-'+shot.id +'" class="btn btn-default btn-xs like-button" title="点赞"\n' +
@@ -52,7 +53,7 @@
                                 items.push('<h3 class="title">');
                                 items.push('<a target="_blank" rel="external" title="'+shot.title+'" href="'+shot.url+'">'+shot.title+'</a>');
                                 items.push('</h3>');
-                                items.push('<div class="meta">'+shot.url+'</div>');
+                                items.push('<div class="meta">'+shot.url+'    '+shot.gmtModified+'</div>');
                                 items.push('</div>');
                                 items.push('</div>');
                             });
@@ -72,7 +73,7 @@
 
             //点赞
             function love(id) {
-                console.log('id:'+id;
+                console.log('id:'+id);
             }
         });
     </script>
@@ -98,7 +99,7 @@
 <div id="main">
     <div class="container" id="daily">
         <div class="daily">
-            <h3 class="date"> <i class="fa fa-calendar"></i> <span>今日最新</span> <small>2018-11-07</small> </h3>
+            <h3 class="date"> <i class="fa fa-calendar"></i> <span>今日最新</span> <small>good morning</small> </h3>
             <div class="posts" id="article_list">
             </div>
             <div id="morewrapper">

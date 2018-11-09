@@ -33,6 +33,7 @@ public class ArticleService {
         }*/
         if (articleDao.getArticleByUrl(article.getUrl()) == null){
             article.setGmtModified(new Date());
+            //article.setGmtCreate(System.currentTimeMillis());
             articleDao.save(article);
         }
     }

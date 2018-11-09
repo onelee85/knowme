@@ -48,6 +48,7 @@ public class ToutiaoPageProcessor implements PageProcessor {
     ArticleService articleService;
 
     public void process(Page page) {
+        count =0;
        List<Selectable> nodes = page.getHtml().xpath("//*div[@class=\"post\"]").nodes();
        List<Article> datas = new ArrayList<>(nodes.size());
         for (Selectable s : nodes) {

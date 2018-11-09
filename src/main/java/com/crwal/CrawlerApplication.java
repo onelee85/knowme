@@ -1,6 +1,8 @@
 package com.crwal;
 
 import com.crwal.config.TaskThreadPoolConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -18,6 +20,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableConfigurationProperties({TaskThreadPoolConfig.class} )
 @SpringBootApplication
 public class CrawlerApplication  extends SpringBootServletInitializer {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CrawlerApplication.class);
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

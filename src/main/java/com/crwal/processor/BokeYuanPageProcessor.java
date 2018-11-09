@@ -51,6 +51,7 @@ public class BokeYuanPageProcessor implements PageProcessor {
     public void process(Page page) {
         List<Selectable> nodes = page.getHtml().xpath("//*entry").nodes();
         List<Article> datas = new ArrayList<>(nodes.size());
+        count =0;
         for (Selectable s : nodes) {
             //获取页面需要的内容
             Article article = new Article();
