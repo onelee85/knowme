@@ -23,6 +23,12 @@ public class ArticleController {
     @Autowired
     ArticleService articleService;
 
+    /**
+     * 文章列表
+     * @param page
+     * @param size
+     * @return
+     */
     @RequestMapping("/list")
     public Map<String, Object> list(@RequestParam("page") int page,@RequestParam("size") int size) {
         Map<String, Object> result = new HashMap<>();
@@ -35,11 +41,4 @@ public class ArticleController {
         return result;
     }
 
-    @RequestMapping("/love")
-    public Map<String, Object> love(@RequestParam("id") int id) {
-        Map<String, Object> result = new HashMap<>();
-        //Page<Article> pages = articleService.findArticles(page, size);
-        result.put("code", 1);
-        return result;
-    }
 }
