@@ -1,8 +1,8 @@
-package com.crwal;
+package com.crawl.Schedule;
 
-import com.crwal.processor.BokeYuanPageProcessor;
-import com.crwal.processor.CsdnPageProcessor;
-import com.crwal.processor.ToutiaoPageProcessor;
+import com.crawl.processor.BokeYuanPageProcessor;
+import com.crawl.processor.CsdnPageProcessor;
+import com.crawl.processor.ToutiaoPageProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
  * Date: 2018/11/2 14:23
  */
 @Component
-public class ScheduledTasks {
-    private static final Logger logger = LoggerFactory.getLogger(ScheduledTasks.class);
+public class CrawlProcessTasks {
+    private static final Logger logger = LoggerFactory.getLogger(CrawlProcessTasks.class);
 
     @Autowired
     BokeYuanPageProcessor bokeYuanPageProcessor;

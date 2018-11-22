@@ -1,8 +1,8 @@
-package com.crwal.processor;
+package com.crawl.processor;
 
-import com.crwal.entity.Article;
-import com.crwal.entity.SourceEum;
-import com.crwal.service.ArticleService;
+import com.crawl.entity.Article;
+import com.crawl.entity.SourceEum;
+import com.crawl.service.ArticleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Selectable;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**

@@ -1,6 +1,6 @@
-package com.crwal.recommender;
+package com.crawl.recommender;
 
-import com.crwal.utils.Similarity;
+import com.crawl.utils.Similarity;
 import com.huaban.analysis.jieba.JiebaSegmenter;
 import org.springframework.stereotype.Component;
 

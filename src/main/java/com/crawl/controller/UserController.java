@@ -1,8 +1,8 @@
-package com.crwal.controller;
+package com.crawl.controller;
 
-import com.crwal.entity.Event;
-import com.crwal.entity.PerferEum;
-import com.crwal.service.EventService;
+import com.crawl.entity.Event;
+import com.crawl.entity.PerferEum;
+import com.crawl.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,6 +1,6 @@
-package com.crwal.dao;
+package com.crawl.dao;
 
-import com.crwal.entity.Recommendation;
+import com.crawl.entity.Recommendation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

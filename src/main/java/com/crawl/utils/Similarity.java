@@ -1,4 +1,4 @@
-package com.crwal.utils;
+package com.crawl.utils;
 
 import java.util.HashMap;
 import java.util.Map;

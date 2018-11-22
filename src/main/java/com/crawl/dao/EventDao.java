@@ -1,7 +1,7 @@
-package com.crwal.dao;
+package com.crawl.dao;
 
 
-import com.crwal.entity.Event;
+import com.crawl.entity.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

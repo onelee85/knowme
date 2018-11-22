@@ -1,10 +1,8 @@
-package com.crwal;
+package com.crawl;
 
-import com.crwal.config.TaskThreadPoolConfig;
-import com.crwal.recommender.ContentBasedRecommender;
+import com.crawl.config.TaskThreadPoolConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;

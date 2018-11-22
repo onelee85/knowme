@@ -1,10 +1,7 @@
-package com.crwal.entity;
-
-import org.hibernate.annotations.GenericGenerator;
+package com.crawl.entity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author: jiao.li@ttpod.com

@@ -1,4 +1,4 @@
-package com.crwal.config;
+package com.crawl.config;
 
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.context.properties.ConfigurationProperties;

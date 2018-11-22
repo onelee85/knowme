@@ -1,4 +1,4 @@
-package com.crwal.entity;
+package com.crawl.entity;
 
 /**
  * @author: jiao.li@ttpod.com

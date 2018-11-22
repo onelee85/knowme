@@ -1,9 +1,9 @@
-package com.crwal.controller;
+package com.crawl.controller;
 
-import com.crwal.entity.Article;
-import com.crwal.recommender.ContentBasedRecommender;
-import com.crwal.recommender.TfidfUtil;
-import com.crwal.service.ArticleService;
+import com.crawl.entity.Article;
+import com.crawl.recommender.ContentBasedRecommender;
+import com.crawl.recommender.TfidfUtil;
+import com.crawl.service.ArticleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

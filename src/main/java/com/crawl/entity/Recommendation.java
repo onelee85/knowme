@@ -1,4 +1,4 @@
-package com.crwal.entity;
+package com.crawl.entity;
 
 import javax.persistence.*;
 

@@ -1,10 +1,9 @@
-package com.crwal.recommender;
+package com.crawl.recommender;
 
 import org.ansj.app.keyword.KeyWordComputer;
 import org.ansj.app.keyword.Keyword;
 import org.ansj.dic.LearnTool;
 import org.ansj.domain.Nature;
-import org.ansj.domain.NewWord;
 import org.ansj.domain.Result;
 import org.ansj.splitWord.analysis.*;
 
