@@ -1,7 +1,11 @@
 package com.crwal.controller;
 
 import com.crwal.entity.Article;
+import com.crwal.recommender.ContentBasedRecommender;
+import com.crwal.recommender.TfidfUtil;
 import com.crwal.service.ArticleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +23,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ArticleController.class);
 
     @Autowired
     ArticleService articleService;
@@ -38,7 +44,31 @@ public class ArticleController {
         result.put("pages",pages.getTotalPages());
         result.put("total",pages.getTotalElements());
         result.put("number",pages.getNumber());
+        for (Article article : pages.getContent()){
+            article.setTags(TfidfUtil.getKeywords(article.getTitle(), 5).toString());
+        }
         return result;
     }
+
+
+    @Autowired
+    ContentBasedRecommender contentBasedRecommender;
+
+    @RequestMapping("/recommend")
+    public Map<String, Object> recommend(@RequestParam("page") int page,@RequestParam("size") int size) {
+        Map<String, Object> result = new HashMap<>();
+        Page<Article> pages = articleService.findArticles(page, size);
+        result.put("data",pages.getContent());
+        result.put("pages",pages.getTotalPages());
+        result.put("total",pages.getTotalElements());
+        result.put("number",pages.getNumber());
+        for (Article article : pages.getContent()){
+            article.setTags(TfidfUtil.getKeywords(article.getTitle(), 5).toString());
+        }
+        result.put("code", 1);
+        return result;
+    }
+
+
 
 }

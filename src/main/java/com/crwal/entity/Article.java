@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author: jiao.li@ttpod.com
@@ -38,6 +39,9 @@ public class Article {
 
     @Column(name = "gmt_modified")
     private Date gmtModified;
+
+    @Column(name = "tags")
+    private String tags;
 
     public SourceEum getSource() {
         return source;
@@ -105,5 +109,13 @@ public class Article {
 
     public void setGmtPublished(Date gmtPublished) {
         this.gmtPublished = gmtPublished;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 }

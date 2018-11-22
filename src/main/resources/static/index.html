@@ -16,6 +16,26 @@
     <script type="text/javascript" src="https://staticfile.qnssl.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 
     <script type="text/javascript">
+        //点赞
+        function love(id) {
+            console.log('id:'+id);
+            $.post("/user/love", { id: id} );
+        }
+
+        //收藏
+        function favorite(id) {
+            console.log('id:'+id);
+            $.post("/user/favorite", { id: id} );
+        }
+
+        //浏览
+        function view(id, obj) {
+            console.log('view id:'+id);
+            console.log('view url:'+ $(obj).attr("data-url"));
+            $.post("/user/view", { id: id} );
+            window.open($(obj).attr("data-url"), "_blank");
+        }
+
         var zxPage = 1;
         var api_url = 'http://localhost:8000/';
         $(function() {
@@ -42,18 +62,21 @@
                                 console.log('gmtmodified:'+shot.gmtModified);
                                 items.push('<div class="post">');
                                 items.push('<div class="btn-group-vertical upvote">\n' +
-                                '                                    <a id="like-button-'+shot.id +'" class="btn btn-default btn-xs like-button" title="点赞"\n' +
-                                '                                         data-remote="true" rel="nofollow" data-method="post" href="/likes/post/1856863"> <i class="fa fa-thumbs-o-up"></i> <span></span>\n' +
-                                '                                    </a>\n' +
-                                '                                    <a id="favorite-button-'+shot.id+ '" class="btn btn-default btn-xs favorite-button" title="收藏"\n' +
-                                '                                        data-remote="true" rel="nofollow" data-method="post" href="/favorites/post/1856863"> <i class="fa fa-bookmark-o"></i><!-- <span></span> -->\n' +
-                                '                                        </a>\n' +
-                                '                                 </div>');
-                                items.push('<div class="content" data-url="'+shot.url+'">');
+                                '            <a id="like-button-'+shot.id +'" class="btn btn-default btn-xs like-button" title="点赞"\n' +
+                                '                  data-remote="true" rel="nofollow" data-method="post" onclick="love('+shot.id+')" href="#"> ' +
+                                    '                   <i class="fa fa-thumbs-o-up"></i> <span></span>\n' +
+                                '            </a>\n' +
+                                '            <a id="favorite-button-'+shot.id+ '" class="btn btn-default btn-xs favorite-button" title="收藏"\n' +
+                                '                   data-remote="true" rel="nofollow" data-method="post" onclick="favorite('+shot.id+')"  href="#"> ' +
+                                    '                   <i class="fa fa-bookmark-o"></i><!-- <span></span> -->\n' +
+                                '            </a>\n' +
+                                '           </div>');
+                                items.push('<div class="content" data-url="'+shot.url+'"  onclick="view('+shot.id+',this)"> ');
                                 items.push('<h3 class="title">');
                                 items.push('<a target="_blank" rel="external" title="'+shot.title+'" href="'+shot.url+'">'+shot.title+'</a>');
                                 items.push('</h3>');
                                 items.push('<div class="meta">'+shot.url+'    '+shot.gmtModified+'</div>');
+                                items.push('<div class="meta">'+shot.tags+'</div>');
                                 items.push('</div>');
                                 items.push('</div>');
                             });
@@ -70,12 +93,8 @@
                 });
                 //end ajax
             }
-
-            //点赞
-            function love(id) {
-                console.log('id:'+id);
-            }
         });
+
     </script>
 </head>
 <body class="welcome_index">

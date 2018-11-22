@@ -1,8 +1,10 @@
 package com.crwal;
 
 import com.crwal.config.TaskThreadPoolConfig;
+import com.crwal.recommender.ContentBasedRecommender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -15,9 +17,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @author: jiao.li
  * Date: 2018/11/2 13:41
  */
-/*@EnableScheduling
+@EnableConfigurationProperties({TaskThreadPoolConfig.class} )
+@EnableScheduling
 @EnableAsync
-@EnableConfigurationProperties({TaskThreadPoolConfig.class} )*/
 @SpringBootApplication
 public class CrawlerApplication  extends SpringBootServletInitializer {
 
@@ -27,6 +29,7 @@ public class CrawlerApplication  extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(CrawlerApplication.class);
     }
+
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(CrawlerApplication.class, args);

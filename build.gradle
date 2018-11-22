@@ -9,6 +9,11 @@ buildscript {
     repositories {
         mavenLocal()
         mavenCentral()
+        maven { url 'https://plugins.gradle.org/m2/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+        //google()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -50,5 +55,12 @@ dependencies {
 
     compile group: 'us.codecraft', name: 'webmagic-core', version: '0.7.3'
     compile group: 'us.codecraft', name: 'webmagic-extension', version: '0.7.3'
+
+    compile group: 'org.apache.mahout', name: 'mahout-core', version: '0.9'
+    compile group: 'org.apache.mahout', name: 'mahout-integration', version: '0.12.2'
+
+    compile group: 'org.ansj', name: 'ansj_seg', version: '5.1.6'
+    compile group: 'com.huaban', name: 'jieba-analysis', version: '1.0.2'
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
