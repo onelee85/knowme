@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>个人的知识库</title>
+    <title>个人的知识库-推荐</title>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <meta name="keywords" content="Jameslee的个人的知识库" />
-    <meta name="description" content="个人的知识库,关注前沿技术科技，各种博客大神。" />
+    <meta name="keywords" content="Jameslee的个人的知识库-推荐" />
+    <meta name="description" content="个人的知识库,关注前沿技术科技，各种博客和大神的文章展示。" />
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" type="text/css" href="https://staticfile.qnssl.com/twitter-bootstrap/3.3.0/css/bootstrap.min.css" />
@@ -48,7 +48,7 @@
                 $.ajax({
                     type: "get",
                     dataType: "json",
-                    url: '/article/list?size=20' + '&page=' + zxPage,
+                    url: '/article/recommend?size=20' + '&page=' + zxPage,
                     cache: false,
                     success: function(json) {
                         console.log(json.data.length);
@@ -118,7 +118,7 @@
 <div id="main">
     <div class="container" id="daily">
         <div class="daily">
-            <h3 class="date"> <i class="fa fa-calendar"></i> <span>今日最新</span> <small>good morning</small> </h3>
+            <h3 class="date"> <i class="fa fa-calendar"></i> <span>猜你喜欢</span> <small>good luck</small> </h3>
             <div class="posts" id="article_list">
             </div>
             <div id="morewrapper">
