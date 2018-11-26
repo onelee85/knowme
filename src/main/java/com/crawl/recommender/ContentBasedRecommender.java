@@ -140,12 +140,13 @@ public class ContentBasedRecommender {
         //获取用户兴趣标签
         User user = userService.getById(userId);
         Map<Object, Object> userKeywords = getUserKeywords(user.getPrefList());
-        logger.info("user keys {}",userKeywords);
+        logger.info("userKeywords {}",userKeywords);
+        logger.info("articleKeywords {}",articleKeywords);
         //计算匹配的文章
         articleKeywords.forEach((Long aid, List<String> as) ->{
             int point = 0;
             for (String articleKeyword : as){
-                if(userKeywords.containsKey(as)){
+                if(userKeywords.containsKey(articleKeyword)){
                     point += (int)userKeywords.get(articleKeyword);
                 }
             }
@@ -156,6 +157,7 @@ public class ContentBasedRecommender {
         });
         logger.info("articlePoints {}",articlePoints);
         //过滤已推荐过的文章
+
         //排序后前10篇文章推荐给用户
         articlePoints.forEach((Long aid, Integer point) ->{
             Recommendation recommendation = new Recommendation();

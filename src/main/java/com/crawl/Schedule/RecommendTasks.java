@@ -29,7 +29,7 @@ public class RecommendTasks {
    /* @Async
     @Scheduled(cron = "0 1 * * * *")*/
     @Async
-    @Scheduled(initialDelay = 300, fixedRate = 60*60*1000)
+    @Scheduled(initialDelay = 200, fixedRate = 60*60*1000)
     public void refreshUserPreferLabel(){
         logger.info(Thread.currentThread().getName()+"=====>>>>>refreshUserPreferLabel启动 "+System.currentTimeMillis());
         contentBasedRecommender.setUserPreferLabels(UserController.USER_ID);
@@ -39,7 +39,7 @@ public class RecommendTasks {
      * 文章推荐 60分钟更新一次
      */
     @Async
-    @Scheduled(initialDelay = 300, fixedRate = 30*60*1000)
+    @Scheduled(initialDelay = 1000, fixedRate = 30*60*1000)
     public void refreshArticleRecommend(){
         logger.info(Thread.currentThread().getName()+"=====>>>>>refreshArticleRecommend启动 "+System.currentTimeMillis());
         contentBasedRecommender.recommend(UserController.USER_ID);

@@ -25,8 +25,9 @@ public class RecommendService {
     private RecommendationDao recommendationDao;
 
     public void addRecommendation(Recommendation recommendation) {
-        recommendation.setDeriveTime(System.currentTimeMillis());
-        recommendationDao.save(recommendation);
+        if(recommendationDao.getRecommendationByUid(recommendation.getUserId(), recommendation.getaId()) == null ){
+            recommendationDao.save(recommendation);
+        }
     }
 
     public void addRecommendations(List<Recommendation> recommendations) {

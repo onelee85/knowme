@@ -2,6 +2,8 @@ CREATE DATABASE crawl
 CHARACTER SET 'utf8'
 COLLATE 'utf8_general_ci';
 
+USE crawl;
+
 DROP TABLE IF EXISTS crawl.articles;
 CREATE TABLE crawl.articles
 (
@@ -42,7 +44,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-USE crawl;
 DROP TABLE IF EXISTS `recommendations`;
 CREATE TABLE `recommendations` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -53,3 +54,4 @@ CREATE TABLE `recommendations` (
   `derive_algorithm` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE UNIQUE INDEX user_id_aid_index  ON recommendations(user_id,a_id);
