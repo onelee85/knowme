@@ -6,5 +6,14 @@ package com.crawl.entity;
  * 0：浏览，1：点赞，2：收藏
  */
 public enum PerferEum {
-    view, love, favorite
+    view(1), love(2), favorite(3);
+
+    int point;
+
+    PerferEum(int point){
+        this.point = point;
+    }
+    public int getPoint(){
+        return this.point;
+    }
 }

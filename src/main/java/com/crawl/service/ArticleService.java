@@ -55,4 +55,12 @@ public class ArticleService {
         if(url == null) return null;
         return articleDao.getArticleByUrl(url);
     }
+
+    public Article getId(long id){
+        return articleDao.findById(id).get();
+    }
+
+    public List<Article> findArticlesByDate(Date date){
+        return articleDao.findArticleByDate(date);
+    }
 }

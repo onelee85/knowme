@@ -23,7 +23,7 @@ public class UserController {
     EventService eventService;
 
     //测试用户ID
-    private final static long USER_ID = 10000L;
+    public final static long USER_ID = 10000L;
     /**
      * 浏览
      * @param id 文章ID

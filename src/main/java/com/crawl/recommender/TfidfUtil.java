@@ -46,7 +46,7 @@ public class TfidfUtil {
 
     public static List<String> getKeywords(String content,int keyNums){
         List<String> keywords = new ArrayList<>(keyNums);
-        System.out.println(NlpAnalysis.parse(content));
+        //System.out.println(NlpAnalysis.parse(content));
         Result r = NlpAnalysis.parse(content);
         r.getTerms().forEach((item) -> {
                     if(item.getNatureStr().equals("n")

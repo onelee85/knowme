@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * @author: jiao.li@ttpod.com
  * Date: 2018/11/5 10:40
@@ -27,4 +30,9 @@ public class EventService {
             eventDao.save(events);
         }
     }
+
+    public List<Event> getUserLabels(Long userId, Date beginTime, Date endTime){
+        return eventDao.getEventsByUserAndDate(userId, beginTime, endTime);
+    }
+
 }

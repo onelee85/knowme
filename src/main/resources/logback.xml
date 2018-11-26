@@ -21,7 +21,7 @@
 
 
     <!-- ConsoleAppender 控制台输出日志 -->
-    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>
                 <!-- 设置日志输出格式 -->
@@ -150,18 +150,19 @@
         </encoder>
     </appender>
 
+    <logger name="com.ttpod.star.web.spring" level="INFO"/>
+
+    <logger name="com.crawl" level="${log.level}">
+        <appender-ref ref="STDOUT"/>
+    </logger>
 
     <!-- root级别   DEBUG -->
     <root>
         <!-- 打印debug级别日志及以上级别日志 -->
         <level value="${log.level}"/>
-        <!-- 控制台输出 -->
-        <appender-ref ref="console"/>
         <!-- 文件输出 -->
         <appender-ref ref="ERROR"/>
         <appender-ref ref="INFO"/>
         <appender-ref ref="WARN"/>
-        <appender-ref ref="DEBUG"/>
-        <appender-ref ref="TRACE"/>
     </root>
 </configuration>
