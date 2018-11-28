@@ -129,7 +129,7 @@ public class ContentBasedRecommender {
         if(articles.size() == 0) return;
 
         Map<Long, List<String>> articleKeywords = new HashMap<>();
-        Map<Long, Integer> articlePoints = new TreeMap<>();
+        Map<Long, Integer> articlePoints = new LinkedHashMap<>();
         //文章的标签
         articles.forEach(a ->{
             String title = a.getTitle();
@@ -138,10 +138,9 @@ public class ContentBasedRecommender {
             articleKeywords.put(id, keywords);
         });
         //获取用户兴趣标签
-        User user = userService.getById(userId);
-        Map<Object, Object> userKeywords = getUserKeywords(user.getPrefList());
+        Map<Object, Object> userKeywords = getUserKeywords(userId);
         logger.info("userKeywords {}",userKeywords);
-        logger.info("articleKeywords {}",articleKeywords);
+        //logger.info("articleKeywords {}",articleKeywords);
         //计算匹配的文章
         articleKeywords.forEach((Long aid, List<String> as) ->{
             int point = 0;
@@ -155,19 +154,57 @@ public class ContentBasedRecommender {
             }
 
         });
-        logger.info("articlePoints {}",articlePoints);
-        //过滤已推荐过的文章
-
         //排序后前10篇文章推荐给用户
-        articlePoints.forEach((Long aid, Integer point) ->{
+        Map<Long, Integer> sortMap = new LinkedHashMap<>();
+        articlePoints.entrySet().stream()
+                .sorted(Map.Entry.<Long, Integer>comparingByValue().reversed())
+                .forEachOrdered(e -> sortMap.put(e.getKey(), e.getValue()));
+
+        logger.info("articlePoints {}",sortMap);
+        Integer rank = 10;
+        for (Map.Entry<Long, Integer> entry: sortMap.entrySet()){
+            if (rank > 0){
+                Long aid = entry.getKey();
+                Integer point = entry.getValue();
+                Recommendation recommendation = new Recommendation();
+                recommendation.setaId(aid);
+                recommendation.setUserId(userId);
+                recommendation.setFeedback(0);
+                Boolean succ = recommendService.addRecommendation(recommendation);
+                if (succ) rank--;
+            }
+
+        }
+/*        sortMap.forEach((Long aid, Integer point) ->{
             Recommendation recommendation = new Recommendation();
             recommendation.setaId(aid);
             recommendation.setUserId(userId);
             recommendation.setFeedback(0);
-            recommendService.addRecommendation(recommendation);
-        });
+            Boolean succ = recommendService.addRecommendation(recommendation);
+        });*/
 
     }
 
+    /**
+     * 衰减用户喜好
+     */
+    public void declineUserPrefer(Long userId){
+        //获取用户表标签
+        User user = userService.getById(userId);
+        Map<Object, Object> userKeywords = getUserKeywords(user.getPrefList());
+        logger.info("declineUserPrefer before userkeys {}",userKeywords);
+        //更新标签
+        userKeywords.forEach((key,value) ->{
+            int point = (int)value - 1;
+            userKeywords.put(key, point > 0 ? point : 0);
+        });
+        logger.info("declineUserPrefer after userKeywords: {}",userKeywords);
+        updateUserKeywords(user, userKeywords);
+        //每日衰减一次所有的喜好
+    }
 
+    private  Map<Object, Object> getUserKeywords(long userId){
+        User user = userService.getById(userId);
+        return getUserKeywords(user.getPrefList());
+    }
 }

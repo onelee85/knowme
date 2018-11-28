@@ -48,8 +48,14 @@ public class RecommendTasks {
     /**
      * 用户喜好标签point衰减 每日一次
      */
+    @Async
+    @Scheduled(cron = "0 0 9 * * ?")
+    public void declineUserPrefer(){
+        logger.info(Thread.currentThread().getName()+"=====>>>>>declineUserPrefer启动 "+System.currentTimeMillis());
+        contentBasedRecommender.declineUserPrefer(UserController.USER_ID);
+    }
 
     /**
-     * 清除15日前未读和不喜欢的推荐文章
+     * 清除5日内未读和不喜欢的推荐文章
      */
 }

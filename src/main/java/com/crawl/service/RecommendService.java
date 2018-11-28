@@ -24,10 +24,12 @@ public class RecommendService {
     @Autowired
     private RecommendationDao recommendationDao;
 
-    public void addRecommendation(Recommendation recommendation) {
+    public Boolean addRecommendation(Recommendation recommendation) {
         if(recommendationDao.getRecommendationByUid(recommendation.getUserId(), recommendation.getaId()) == null ){
             recommendationDao.save(recommendation);
+            return Boolean.TRUE;
         }
+        return Boolean.FALSE;
     }
 
     public void addRecommendations(List<Recommendation> recommendations) {
