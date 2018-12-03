@@ -16,11 +16,8 @@ CREATE TABLE crawl.articles
    gmt_create     TIMESTAMP         DEFAULT CURRENT_TIMESTAMP NOT NULL,
    gmt_modified   DATETIME,
    PRIMARY KEY (id)
-)
-ENGINE=InnoDB;
-
-CREATE UNIQUE INDEX url
-   ON crawl.articles (url ASC);
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+CREATE UNIQUE INDEX url ON crawl.articles (url ASC);
 
 DROP TABLE IF EXISTS `event_logs`;
 CREATE TABLE `event_logs` (

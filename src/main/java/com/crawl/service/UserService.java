@@ -1,17 +1,11 @@
 package com.crawl.service;
 
-import com.crawl.dao.ArticleDao;
-import com.crawl.dao.EventDao;
 import com.crawl.dao.UserDao;
-import com.crawl.entity.Event;
 import com.crawl.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * @author: jiao.li@ttpod.com

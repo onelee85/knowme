@@ -1,9 +1,6 @@
 package com.crawl.Schedule;
 
 import com.crawl.controller.UserController;
-import com.crawl.processor.BokeYuanPageProcessor;
-import com.crawl.processor.CsdnPageProcessor;
-import com.crawl.processor.ToutiaoPageProcessor;
 import com.crawl.recommender.ContentBasedRecommender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

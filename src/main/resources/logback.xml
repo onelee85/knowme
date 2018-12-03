@@ -150,19 +150,22 @@
         </encoder>
     </appender>
 
-    <logger name="com.ttpod.star.web.spring" level="INFO"/>
+    <!-- 下面配置一些第三方包的日志过滤级别，用于避免刷屏 -->
+    <logger name="org.hibernate" level="WARN"/>
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.apache" level="WARN"/>
 
     <logger name="com.crawl" level="${log.level}">
         <appender-ref ref="STDOUT"/>
+        <!-- 文件输出 -->
+        <appender-ref ref="ERROR"/>
+        <appender-ref ref="INFO"/>
+        <appender-ref ref="WARN"/>
     </logger>
 
     <!-- root级别   DEBUG -->
     <root>
         <!-- 打印debug级别日志及以上级别日志 -->
         <level value="${log.level}"/>
-        <!-- 文件输出 -->
-        <appender-ref ref="ERROR"/>
-        <appender-ref ref="INFO"/>
-        <appender-ref ref="WARN"/>
     </root>
 </configuration>

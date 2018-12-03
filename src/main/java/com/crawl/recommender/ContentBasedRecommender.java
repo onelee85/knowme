@@ -1,16 +1,12 @@
 package com.crawl.recommender;
 
-import com.crawl.Schedule.CrawlProcessTasks;
 import com.crawl.entity.*;
 import com.crawl.service.ArticleService;
 import com.crawl.service.EventService;
 import com.crawl.service.RecommendService;
 import com.crawl.service.UserService;
 import com.crawl.utils.JacksonUtil;
-import com.crawl.utils.Similarity;
-import com.huaban.analysis.jieba.JiebaSegmenter;
 import org.apache.commons.lang.StringUtils;
-import org.codehaus.jackson.annotate.JsonUnwrapped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
